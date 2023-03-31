@@ -37,8 +37,9 @@ jobs:
       uses: docker/build-push-action@v4.0.0
       with:
         # Build's context is the set of files located in the specified PATH or URL
-        context: ./dockerfiles
+        context: ./src/
         # Path to the Dockerfile
-        file: php.dockerfile
+        file: ./dockerfiles/php.dockerfile
         # Push is a shorthand for --output=type=registry
         push: true
+        tags: dani03/app-laravel:latest
