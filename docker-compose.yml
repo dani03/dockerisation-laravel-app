@@ -30,6 +30,7 @@ services:
     volumes:
       - ./src:/var/www/html
     entrypoint: ["composer"]
+    command: "composer install"
 
   artisan:
     build:
@@ -38,6 +39,8 @@ services:
     volumes:
       - ./src:/var/www/html
     entrypoint: ["php", "/var/www/html/artisan"]
+    command: bash > "
+      php artisan migrate && php artisan key:generate"
     depends_on:
       - npm
   npm:
@@ -46,6 +49,7 @@ services:
     entrypoint: ["npm"]
     volumes:
       - ./src:/var/www/html
+    command: "npm i && npm run dev"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
